@@ -7,7 +7,7 @@ st.set_page_config(page_title="Nasz Licznik", page_icon="❤️")
 
 # --- TWOJE DANE (Zmień tutaj) ---
 # Data rozpoczęcia związku: Rok, Miesiąc, Dzień
-START_DATE = datetime(2022, 5, 15) 
+START_DATE = datetime(2024, 03, 09) 
 # Link do zdjęcia w tle
 BG_IMAGE_URL = "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop"
 
@@ -64,12 +64,7 @@ st.markdown(
     </style>
 
     <div class="heart" style="left: 10%; animation-duration: 7s;">❤️</div>
-    <div class="heart" style="left: 20%; animation-duration: 10s;">💖</div>
-    <div class="heart" style="left: 35%; animation-duration: 8s;">💕</div>
-    <div class="heart" style="left: 50%; animation-duration: 12s;">❤️</div>
-    <div class="heart" style="left: 65%; animation-duration: 6s;">💗</div>
-    <div class="heart" style="left: 80%; animation-duration: 11s;">💘</div>
-    <div class="heart" style="left: 95%; animation-duration: 9s;">❤️</div>
+
     """,
     unsafe_allow_html=True
 )
@@ -78,7 +73,7 @@ st.markdown(
 st.markdown(
     f"""
     <div class="counter-container">
-        <div class="title">❤️ Jesteśmy razem już ❤️</div>
+        <div class="title">Jesteśmy razem już: ❤️</div>
         <div class="time">
             {diff.years} lat, {diff.months} miesięcy i {diff.days} dni
         </div>
@@ -99,3 +94,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
