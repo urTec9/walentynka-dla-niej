@@ -1,15 +1,26 @@
 import streamlit as st
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import base64
 
 # --- KONFIGURACJA STRONY ---
 st.set_page_config(page_title="Nasz Licznik", page_icon="❤️", layout="centered")
 
-# --- TWOJE DANE (Zmień tutaj) ---
-# Data rozpoczęcia związku: Rok, Miesiąc, Dzień
+# --- FUNKCJA DO ŁADOWANIA LOKALNEGO ZDJĘCIA ---
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+# --- TWOJE DANE ---
 START_DATE = datetime(2024, 3, 9) 
-# Link do zdjęcia w tle
-BG_IMAGE_URL = "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop"
+NAZWA_PLIKU = "wallpaper1.jpg"       
+
+try:
+    bin_str = get_base64_of_bin_file(NAZWA_PLIKU)
+except FileNotFoundError:
+    st.error(f"Nie znaleziono pliku '{NAZWA_PLIKU}'. Upewnij się, że jest w tym samym folderze co kod!")
+    bin_str = ""
 
 # --- LOGIKA OBLICZEŃ ---
 now = datetime.now()
@@ -17,12 +28,11 @@ diff = relativedelta(now, START_DATE)
 total_days = (now - START_DATE).days
 
 # --- STYLIZACJA CSS I SERCA ---
-# Używamy podwójnych klamer {{ }} dla CSS, aby f-string ich nie pomylił ze zmiennymi
 st.markdown(
     f"""
     <style>
     .stApp {{
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{BG_IMAGE_URL}");
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("data:image/png;base64,{bin_str}");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -60,7 +70,6 @@ st.markdown(
     .time {{ font-size: 1.8rem; color: #ffb6c1; margin-bottom: 10px; }}
     .days {{ font-size: 1.2rem; opacity: 0.8; }}
 
-    /* Ukrywanie elementów Streamlit */
     #MainMenu, footer, header {{ visibility: hidden; }}
     </style>
 
@@ -79,7 +88,7 @@ st.markdown(
 st.markdown(
     f"""
     <div class="counter-container">
-        <div class="title">❤️ Jesteśmy razem już ❤️</div>
+        <div class="title">Jesteśmy razem już: ❤️</div>
         <div class="time">
             {diff.years} lat, {diff.months} miesięcy i {diff.days} dni
         </div>
