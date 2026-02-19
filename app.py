@@ -3,7 +3,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 # --- KONFIGURACJA STRONY ---
-st.set_page_config(page_title="Nasz Licznik", page_icon="❤️")
+st.set_page_config(page_title="Nasz Licznik", page_icon="❤️", layout="centered")
 
 # --- TWOJE DANE (Zmień tutaj) ---
 # Data rozpoczęcia związku: Rok, Miesiąc, Dzień
@@ -37,11 +37,13 @@ st.markdown(
     .heart {{
         position: fixed;
         top: -10%;
-        color: rgba(255, 182, 193, 0.8);
-        font-size: 24px;
+        /* Kolor serca (możesz zmienić, np. na czyste 'red') */
+        color: rgba(220, 20, 60, 0.9); 
+        font-size: 26px;
         user-select: none;
         z-index: 1000;
         animation: heart-fall linear infinite;
+        text-shadow: 0 0 5px rgba(0,0,0,0.3);
     }}
 
     /* Kontener licznika (efekt szklanej karty) */
@@ -51,47 +53,4 @@ st.markdown(
         border-radius: 30px;
         backdrop-filter: blur(15px);
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
-        margin-top: 15vh;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        font-family: 'Helvetica', sans-serif;
-    }}
-
-    .title {{ font-size: 2.5rem; font-weight: bold; margin-bottom: 20px; }}
-    .time {{ font-size: 1.8rem; color: #ffb6c1; margin-bottom: 10px; }}
-    .days {{ font-size: 1.2rem; opacity: 0.8; }}
-    </style>
-
-    <div class="heart" style="left: 10%; animation-duration: 7s;">❤️</div>
-
-    """,
-    unsafe_allow_html=True
-)
-
-# --- WYŚWIETLANIE LICZNIKA ---
-st.markdown(
-    f"""
-    <div class="counter-container">
-        <div class="title">Jesteśmy razem już: ❤️</div>
-        <div class="time">
-            {diff.years} lat, {diff.months} miesięcy i {diff.days} dni
-        </div>
-        <div class="days">To łącznie już {total_days} pięknych dni!</div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# Ukrywamy domyślne menu Streamlit, żeby strona była "czysta"
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
+        border: 1px
