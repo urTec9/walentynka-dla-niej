@@ -7,7 +7,7 @@ st.set_page_config(page_title="Nasz Licznik", page_icon="❤️", layout="center
 
 # --- TWOJE DANE (Zmień tutaj) ---
 # Data rozpoczęcia związku: Rok, Miesiąc, Dzień
-START_DATE = datetime(2024, 03, 09) 
+START_DATE = datetime(2024, 3, 9) 
 # Link do zdjęcia w tle
 BG_IMAGE_URL = "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=2070&auto=format&fit=crop"
 
@@ -54,3 +54,4 @@ st.markdown(
         backdrop-filter: blur(15px);
         text-align: center;
         border: 1px
+
